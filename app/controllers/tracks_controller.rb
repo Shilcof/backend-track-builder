@@ -12,7 +12,6 @@ class TracksController < ApplicationController
     end
 
     def create
-        byebug
         track = Track.new(track_params)
         if track.save
             render json: track, only: [:id, :name], include: [

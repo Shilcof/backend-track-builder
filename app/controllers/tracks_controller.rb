@@ -1,12 +1,12 @@
 class TracksController < ApplicationController
     def index
         tracks = Track.all
-        render json: tracks, only: [:id, :name]
+        render json: tracks, only: [:id, :name, :creator]
     end
 
     def show
         track = Track.find(params[:id])
-        render json: track, only: [:id, :name], include: [
+        render json: track, only: [:id, :name, :creator], include: [
             segments: {only: [:position, :segment_type]}
         ]
     end
@@ -14,7 +14,7 @@ class TracksController < ApplicationController
     def create
         track = Track.new(track_params)
         if track.save
-            render json: track, only: [:id, :name], include: [
+            render json: track, only: [:id, :name, :creator], include: [
                 segments: {only: [:position, :segment_type]}
             ]
         else
@@ -25,7 +25,7 @@ class TracksController < ApplicationController
         track = Track.find(params[:id])
         if track.update(track_params)
             track.reload
-            render json: track, only: [:id, :name], include: [
+            render json: track, only: [:id, :name, :creator], include: [
                 segments: {only: [:position, :segment_type]}
             ]
         else
@@ -34,7 +34,7 @@ class TracksController < ApplicationController
 
     def destroy
         track = Track.find(params[:id])
-        render json: track, only: [:id, :name], include: [
+        render json: track, only: [:id, :name, :creator], include: [
             segments: {only: [:position, :segment_type]}
         ]
     end
@@ -42,6 +42,6 @@ class TracksController < ApplicationController
     private
 
     def track_params
-        params.require(:track).permit(:name, segments_attributes: {})
+        params.require(:track).permit(:name, :creator, segments_attributes: {})
     end
 end

@@ -3,7 +3,9 @@ class Track < ApplicationRecord
 
     def segments_attributes=(attributes)
         attributes.each { |pos, type|
-            self.segments.build({position: pos, segment_type: type})
+            if type != 99
+                self.segments.build({position: pos, segment_type: type})
+            end
         }
     end
 

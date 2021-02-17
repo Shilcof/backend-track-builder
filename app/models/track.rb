@@ -1,7 +1,8 @@
 class Track < ApplicationRecord
-    has_many :segments
+    has_many :segments, dependent: :destroy
 
     def segments_attributes=(attributes)
+        segments.each{|s| s.destroy}
         attributes.each { |pos, type|
             if type != 99
                 self.segments.build({position: pos, segment_type: type})

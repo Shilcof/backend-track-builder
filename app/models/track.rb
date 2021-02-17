@@ -6,10 +6,17 @@ class Track < ApplicationRecord
     validate :valid_track
 
     def segments_attributes=(attributes)
-        segments.each{|s| s.destroy}
         attributes.each { |pos, type|
-            if type != 99
-                self.segments.build({position: pos, segment_type: type})
+            if type == 99
+                if segment = self.segments.find_by(position: pos)
+                    segment.destroy
+                end
+            else
+                if segment = self.segments.find_by(position: pos)
+                    segment.update({segment_type: type})
+                else
+                    self.segments.build({position: pos, segment_type: type})
+                end
             end
         }
     end

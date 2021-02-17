@@ -22,12 +22,14 @@ class Track < ApplicationRecord
 
     def valid_track?
         path = {}
-        current = segments.find_by(position: 41)
+        current = segments.find{|s| s.position === 41}
+        puts current.position
         return false if !current
         from = 40
         path[current.position] = current.segment_type
         while current.position != 40
-            current, from = current.next(from), current.position
+            puts current.position
+            current, from = current.next(from, segments), current.position
             if !current || path[current.position]
                 return false
             else

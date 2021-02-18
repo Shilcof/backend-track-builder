@@ -30,7 +30,6 @@ class Track < ApplicationRecord
     def valid_track?
         path = {}
         current = segments.find{|s| s.position === 41}
-        puts current.position
         return false if !current
         from = 40
         path[current.position] = current.segment_type

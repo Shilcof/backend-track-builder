@@ -18,6 +18,7 @@ class TracksController < ApplicationController
                 segments: {only: [:position, :segment_type]}
             ]
         else
+            render json: {status: "error", code: 4000, message: track.errors.full_messages}
         end
     end
 
@@ -29,6 +30,7 @@ class TracksController < ApplicationController
                 segments: {only: [:position, :segment_type]}
             ]
         else
+            render json: {status: "error", message: track.errors.full_messages}
         end
     end
 

@@ -1,10 +1,13 @@
 class TrackChannel < ApplicationCable::Channel
     def subscribed
-        stream_from("tracks")
+        stop_all_streams
+        stream_from(params[:id])
     end
+
     def receive(data)
-        ActionCable.server.broadcast("tracks", content: data)
+        ActionCable.server.broadcast(params[:id], content: data)
     end
+
     def unsubscribed
         stop_all_streams
     end

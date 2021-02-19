@@ -36,6 +36,7 @@ class TracksController < ApplicationController
 
     def destroy
         track = Track.find(params[:id])
+        track.destroy
         render json: track, only: [:id, :name, :creator], include: [
             segments: {only: [:position, :segment_type]}
         ]

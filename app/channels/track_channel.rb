@@ -5,7 +5,7 @@ class TrackChannel < ApplicationCable::Channel
     end
 
     def receive(data)
-        ActionCable.server.broadcast(params[:id], content: data)
+        ActionCable.server.broadcast(params[:id], {content: data})
     end
 
     def unsubscribed

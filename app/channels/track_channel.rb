@@ -1,6 +1,6 @@
 class TrackChannel < ApplicationCable::Channel
     def subscribed
-        stop_all_streams
+        # stop_all_streams
         stream_from(params[:id])
     end
 

@@ -1,24 +1,43 @@
-# README
+# backend-track-builder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Backend code for track-builder, a javascript single page web application (git repo here https://github.com/Shilcof/frontend-track-builder) where users can build and submit tracks to a database handled in the backend by Ruby on Rails.
 
-Things you may want to cover:
+When viewing tracks, a 'car' is generated for each user that can be driven around the track. Using websockets, the location of the car is braodcast to any other user that is also viewing that track so that they can race each other on it.
 
-* Ruby version
+## Installation
 
-* System dependencies
+NetWorkOut was developed using Javascript and Ruby on Rails.
 
-* Configuration
+To run NetWorkOut on your machine, you must first download the files from this repository and the backend. On the backend you must change into the main directory in your terminal.
 
-* Database creation
+Then you must use bundler to install the required gems.
 
-* Database initialization
+```bash
+bundle install
+```
 
-* How to run the test suite
+To set up the database for the application and seed it with dummy data, you must run:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails db:migrate
+```
 
-* Deployment instructions
+## Usage
 
-* ...
+To run the application on your computer you can host it with:
+
+```bash
+rails s
+```
+
+and then in the front end repository open the index.html page in your browser.
+
+To stop hosting the aplication, simply enter control + 'C' into the terminal where it is running.
+
+From here you can create your own tracks, and if you use separate private browser windows, will be able to see cars moving in each page.
+
+## Contributing
+Pull requests are welcome. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
+## License
+The application is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
